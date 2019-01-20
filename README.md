@@ -7,17 +7,7 @@ Slides [here](https://docs.google.com/presentation/d/1bGfbGWbmxB5GeMTOFkSKeNLE-s
 
 ## 0 - Introduction
 
-### Full setup (with workshop solutions)
-
-- Prometheus: [http://devfest.grep.to:9090](http://devfest.grep.to:9090)
-- Grafana: [http://devfest.grep.to:3000](http://devfest.grep.to:3000) (user: grep / pass: demo)
-- Node-Exporter: [http://devfest.grep.to:9100/metrics](http://devfest.grep.to:9100/metrics)
-- PostgreSQL (2 tables): postgres://devfest:devfest@devfest.grep.to:5432/devfest
-- Postgresql-Exporter: [http://devfest.grep.to:9187/metrics](http://devfest.grep.to:9187/metrics)
-- Nginx: [http://devfest.grep.to:8080](http://devfest.grep.to:8080)
-- Nginx-Exporter: [http://devfest.grep.to:9101/metrics](http://devfest.grep.to:9101/metrics)
-
-### Locally with Docker
+### Full setup with Docker
 
 - Prometheus: [http://localhost:8080](http://localhost:8080)
 - Grafana: [http://localhost:3000](http://localhost:3000) (user: grep / pass: demo)
@@ -26,12 +16,6 @@ Slides [here](https://docs.google.com/presentation/d/1bGfbGWbmxB5GeMTOFkSKeNLE-s
 - Postgresql-Exporter: [http://localhost:9187/metrics](http://localhost:9187/metrics)
 - Nginx: [http://localhost:8080](https://localhost:8080)
 - Nginx-Exporter: [http://localhost:9101/metrics](http://localhost:9101/metrics)
-
-### Locally without Docker
-
-Download Prometheus and official exporters: [https://prometheus.io/download/](https://prometheus.io/download/)
-
-Download Grafana: [https://grafana.com/grafana/download](https://grafana.com/grafana/download)
 
 ## 1 - Metrics types
 
@@ -120,6 +104,7 @@ Tips: `node-exporter` metrics are prefixed by `node_`.
   Query: `(node_memory_MemTotal_bytes{} - node_memory_MemFree_bytes{}) / node_memory_MemTotal_bytes{} * 100`
 </details>
 
+TODO:  PromQL example for regexp etc.
 ## 5 - Setup Grafana
 
 Uncomment grafana in docker-compose.yml and launch it:
@@ -128,13 +113,14 @@ Uncomment grafana in docker-compose.yml and launch it:
 docker-compose up -d grafana
 ```
 
-Open [http://localhost:3000](http://localhost:3000) (user: grep / pass: demo).
+Open [http://localhost:3000](http://localhost:3000) (user: admin / pass: workshop).
 
-Add a new datasource to Grafana.
+Add a new Prometheus datasource to Grafana.
 
-- Mode: `server`
+- Name : Prometheus
 - Pointing to http://prometheus:9090
 
+TODO: Explain possibility use provisioning for grafana
 ![](imgs/grafana-setup-datasource.png)
 
 ## 6 - Hand-made dashboard
@@ -357,7 +343,9 @@ post_per_user:
         description: "User email"
 
 ```
-  
+
+`docker-compose restart postgresql-exporter`
+
 </details>
 
 ### 9.1 - Graph time!
@@ -384,11 +372,18 @@ Table of top 10 users per post count (`topk()`, `sum by(<label>) (<metric>)`):
 <details>
   <summary>💡 Solution</summary>
   
-  Query 1: `rate(user_count{}[1m])`
+  ### Users signup
+  Query : `rate(user_count{}[1m])`
   
-  Query 2: `increase(user_count{}[$__interval]) > 0`
+  ### Heatmap new users (30d)
+  Query : `increase(user_count{}[$__interval]) > 0`
+  Use Carpet Plot plugin
+  Display Aggregate : sum
   
-  Query 3: `topk(10, sum by (id, email) (post_per_user_count{}) > 0)`
+  ### 10 bigest blog contributors
+  Query: `topk(10, sum by (id, email) (post_per_user_count{}) > 0)`
+  Legend format : `User {{ id }} - {{ email }}`
+  Format as: time series. Option Table transform :Time series aggregation
   
 </details>
 
