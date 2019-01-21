@@ -47,20 +47,22 @@ Update `prometheus.yml` config file, to scrape node-exporter metrics every 10 se
 <details>
   <summary>💡 Solution</summary>
 
-  ```
+```
 #  
 # /etc/prometheus/prometheus.yml
 #
 
 global:
+  # default scrape_interval
   scrape_interval: 30s
 
 scrape_configs:
+
   - job_name: 'node-exporter'
     scrape_interval: 10s
     static_configs:
       - targets: ['node-exporter:9100']
-  ```
+```
 
 </details>
 
@@ -109,7 +111,6 @@ Tips: `node-exporter` metrics are prefixed by `node_`.
   Query: `(node_memory_MemTotal_bytes{} - node_memory_MemFree_bytes{}) / node_memory_MemTotal_bytes{} * 100`
 </details>
 
-TODO:  PromQL example for regexp etc.
 ## 5 - Setup Grafana
 
 Uncomment grafana in docker-compose.yml and launch it:
@@ -125,7 +126,12 @@ Add a new Prometheus datasource to Grafana.
 - Name : Prometheus
 - Pointing to http://prometheus:9090
 
-TODO: Explain possibility use provisioning for grafana
+<details>
+  <summary> Advance </summary>
+  
+  You can use provisioning for create dashboards, datasources,..
+</details>
+
 ![](imgs/grafana-setup-datasource.png)
 
 ## 6 - Hand-made dashboard
