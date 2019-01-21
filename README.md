@@ -16,6 +16,11 @@ Slides [here](https://docs.google.com/presentation/d/1bGfbGWbmxB5GeMTOFkSKeNLE-s
 - Postgresql-Exporter: [http://localhost:9187/metrics](http://localhost:9187/metrics)
 - Nginx: [http://localhost:8080](https://localhost:8080)
 - Nginx-Exporter: [http://localhost:9101/metrics](http://localhost:9101/metrics)
+- Springboot-exmaple-Exporter: http://127.0.0.1:8081/metrics
+  - Get : http://127.0.0.1:8080/example
+- Python-exmaple-Exporter: http://127.0.0.1:5000/metrics
+  - http://127.0.0.1:5000/hello/<name>
+  - http://127.0.0.1:5000/slow
 
 ## 1 - Metrics types
 
@@ -387,9 +392,10 @@ Table of top 10 users per post count (`topk()`, `sum by(<label>) (<metric>)`):
   
 </details>
 
-### 9.2 - Expose /metrics from a micro-service
+### 9.2 - Expose /metrics from custom application
 
-You can play with this sample in NodeJS: [microservice-demo/README.md](microservice-demo/README.md).
+You can play with this sample in Python or Springboot: [instrumenting-code.md](instrumenting-code.md).
+Uncomment `example-springboot` and `example-python` in docker compose and run `doker-compose up --build`.
 
 Don't forget to update Prometheus configuration in `prometheus.yml` !
 
