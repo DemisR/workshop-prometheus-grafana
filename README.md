@@ -1,9 +1,7 @@
 
-# Workshop Prometheus / Grafana
+# Hands on lab : Prometheus and Grafana
 
-Welcome !
-
-Slides [here](https://docs.google.com/presentation/d/1bGfbGWbmxB5GeMTOFkSKeNLE-skdZS7WhWBZQIfb6lE/edit?usp=sharing).
+Slides [here](https://fr.slideshare.net/DemisRizzotto/prometheus-grafana-workshop)
 
 ## 0 - Introduction
 
