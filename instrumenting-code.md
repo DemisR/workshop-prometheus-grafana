@@ -12,10 +12,10 @@ instructions. If you have not done so yet, clone the repository:
 $ cd prometheus_workshop/example_python
 ```
 
-Install the Prometheus Python client library:
+Install the Prometheus Python client library and other dependencies:
 
 ```
-$ pip install prometheus_client
+$ pip install -r example_python/requirements.txt
 ```
 
 If you don't want to install python libraries globally, pass the `--user` flag to pip.
@@ -23,7 +23,7 @@ If you don't want to install python libraries globally, pass the `--user` flag t
 Run the example application:
 
 ```
-$ python flask_app.py
+$ python example_python/app.py
 ```
 
 ## Instrument it
@@ -43,3 +43,6 @@ The following links will be helpful:
 
 
 # Instrument Code: Java SpringBoot
+
+
+Install dashboard https://grafana.com/dashboards/4701

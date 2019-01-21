@@ -16,8 +16,8 @@ Slides [here](https://docs.google.com/presentation/d/1bGfbGWbmxB5GeMTOFkSKeNLE-s
 - Postgresql-Exporter: [http://localhost:9187/metrics](http://localhost:9187/metrics)
 - Nginx: [http://localhost:8080](https://localhost:8080)
 - Nginx-Exporter: [http://localhost:9101/metrics](http://localhost:9101/metrics)
-- Springboot-exmaple-Exporter: http://127.0.0.1:8081/metrics
-  - Get : http://127.0.0.1:8080/example
+- Springboot-exmaple-Exporter: http://127.0.0.1:8081/actuator/prometheus
+  - Get : http://127.0.0.1:8081/example
 - Python-exmaple-Exporter: http://127.0.0.1:5000/metrics
   - http://127.0.0.1:5000/hello/<name>
   - http://127.0.0.1:5000/slow
