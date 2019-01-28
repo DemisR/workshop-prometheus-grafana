@@ -1,12 +1,12 @@
 # Instrument Code: Python
 
-*This section is about instrumenting a Python application. If you
- prefer Go, continue with the previous section.*
-
 ## The example application
 
-The example application is in the same GitHub repository as these
-instructions. If you have not done so yet, clone the repository:
+A simple python flask application using prometheus client library to generate metrics from the application.
+
+You can use the application directly with Docker and docker-compose, but I encourage you to look the code and how the metrics are generated.
+
+For change the application and run it on your laptop, follow those instructions.
 
 ```
 $ cd prometheus_workshop/example_python
@@ -44,5 +44,12 @@ The following links will be helpful:
 
 # Instrument Code: Java SpringBoot
 
+With the version 2 of SpringBoot , the standard way to generte metrics it's use Micrometer library. (backported in Springboot 1.5)
+This library can expose metrics in differents formats and you can easilly add custom metrics to you app.
 
+If you enable Prometeus format for SpringBoot micrometer, you can use this dashboard for view all standard metrics.
 Install dashboard https://grafana.com/dashboards/4701
+
+Look, the example code for see how you can add custom metrics to your application.
+
+( Counter of hellos )
