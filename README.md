@@ -8,7 +8,7 @@ Slides [here](https://fr.slideshare.net/DemisRizzotto/prometheus-grafana-worksho
 ### Full setup with Docker
 
 - Prometheus: [http://localhost:8080](http://localhost:8080)
-- Grafana: [http://localhost:3000](http://localhost:3000) (user: grep / pass: demo)
+- Grafana: [http://localhost:3000](http://localhost:3000) (user: admin / pass: workshop)
 - Node-Exporter: [http://localhost:9100/metrics](http://localhost:9100/metrics)
 - PostgreSQL (2 tables): postgres://devfest:devfest@localhost:5432/devfest
 - Postgresql-Exporter: [http://localhost:9187/metrics](http://localhost:9187/metrics)
@@ -399,7 +399,7 @@ Table of top 10 users per post count (`topk()`, `sum by(<label>) (<metric>)`):
 ### 9.2 - Expose /metrics from custom application
 
 You can play with this sample in Python or Springboot: [instrumenting-code.md](instrumenting-code.md).
-Uncomment `example-springboot` and `example-python` in docker compose and run `doker-compose up --build`.
+Uncomment `example-springboot` and `example-python` in docker compose and run `docker-compose up --build`.
 
 Don't forget to update Prometheus configuration in `prometheus.yml` !
 
